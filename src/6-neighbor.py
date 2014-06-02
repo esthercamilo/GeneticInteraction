@@ -1,5 +1,7 @@
 from string import *
 import networkx as nx
+import sys, traceback
+import numpy as np
 
 #Construction of the networks
 
@@ -59,7 +61,7 @@ pairsInt = getPairs(GInt)
 #Average degree for each network (was having issues to sum - I kept values on a list)
 def avgDegree(dicValues):
 	list = []
-	for elem in dicValues:
+	for elem in dicValues.values():
 		list.append(float(elem))
 	avg = np.mean(list)
 	return avg
@@ -128,24 +130,29 @@ llna = ['cnInt','fswInt','jcInt','cnppi','fswppi','jcppi','cnreg','fswreg','jcre
 
 #inicialize all dictionaries with zero
 exec("\n".join(['dic'+x+'={}' for x in llna]))
+
+print pairsInt
+
+
 for p in pairsInt:
 	for s in llna:
 		exec('dic'+s+'[("'+p[0]+'","'+p[1]+'")]=0')
 
-for s in llna:	
-	exec('dic'+s+'=dict(dic'+s+'.items() + '+(s[:-3]).upper()+'(G'+s[-3:]+'))')
-
+for s in llna:
+	exec('dic'+s+'=dict(dic'+s+'.items() + '+(s[:-3]).upper()+'((G'+s[-3:]+')).items())')
+	
 # Three NB were calculated: Common-Neighbors (CN), Jaccard (JC) and Functional Similarity Weight (FSW)
 # for each gene pair from Butland file
 
 #save attributes file
 neighfile = open('files/neighbor.tab','w')
-neighfile.write('geneA,geneB,'+"\t".join(llna)+'\n')
+neighfile.write('geneA\tgeneB\t'+"\t".join(llna)+'\n')
 ap=getPairs(GInt)
 for gene in ap:
 	vars = "gene[0],gene[1],"+",".join(['dic'+x+'[(gene[0],gene[1])]' for x in llna])
-	format = ((('%s,')*len(llna))+'%s,%s\n')
+	format = ((('%s\t')*len(llna))+'%s\t%s\n')
 	neighfile.write(format % eval(vars))
 
 
+	
 
