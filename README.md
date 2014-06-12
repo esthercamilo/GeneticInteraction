@@ -25,10 +25,15 @@ onde spaths é o número de caminhos geodésicos que contém simultaneamente os 
 Gera o arquivo neighbor.tab cujo header é: 
 geneA,geneB,'cnInt','fswInt','jcInt','cnppi','fswppi','jcppi','cnreg','fswreg','jcreg','cnmet','fswmet','jcmet'
 
-8-treiningset.py
-Gera 4 arquivos: degbet.csv, neighbor.csv, spaths.csv e completeAtt.csv para cada par do butland que existe na rede integrada.
+8-completset.py
+Gera o arquivo 'files/completeTrainingSet.csv' que contém todos os atributos (centralidades e neighborhood) e score butland numérco (996).
 
-9-completset.py
+9-trainingset.py
+gera o conjunto desbalanceado com todos os atributos e scores de butland numerico. OUTPUT: 'files/trainingSetButland.csv'
 
+10-traingroups.py
+Configura conjunto de pastas para experimentos com a seguinte estrutura: 
+weka/{deg,bet,neigh,complete}. Dentro de cada uma há {arff,csv{exp,random},dot,model,out,png,result,result_random}. A partir do 'files/trainingSetButland.csv' ger preenche a pasta csv/{exp,random} com 100 grupos de treinamento
 
-
+12-stat_metrics.py
+calcula o p-value para o experimento e aleatório. Gera a matriz input para a clusterização. 
