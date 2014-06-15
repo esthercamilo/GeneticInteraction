@@ -45,10 +45,10 @@ def setGroups(indexStart,indexEnd,groupName):
 	fumbalanced.write(thisHeader)
 	for a in range(len(listTrainNeg)):
 		subUmb = ','.join([x for x in listTrainNeg[a][indexStart:indexEnd]])
-		fumbalanced.write(subUmb+',AGG\n')
+		fumbalanced.write(subUmb+',?\n')
 	for a in range(len(listTrainPos)):
 		subUmb = ','.join([x for x in listTrainPos[a][indexStart:indexEnd]])
-		fumbalanced.write(subUmb+',ALL\n')
+		fumbalanced.write(subUmb+',?\n')
 	fumbalanced.close()
 	
 	
