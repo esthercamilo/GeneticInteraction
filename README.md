@@ -35,5 +35,10 @@ gera o conjunto desbalanceado com todos os atributos e scores de butland numeric
 Configura conjunto de pastas para experimentos com a seguinte estrutura: 
 weka/{deg,bet,neigh,complete}. Dentro de cada uma há {arff,csv{exp,random},dot,model,out,png,result,result_random}. A partir do 'files/trainingSetButland.csv' ger preenche a pasta csv/{exp,random} com 100 grupos de treinamento
 
+11-wekaclassifier.py
+threads com OS commands para weka J48 e geração de modelos.
+
 12-stat_metrics.py
-calcula o p-value para o experimento e aleatório. Gera a matriz input para a clusterização. 
+Calcula a média das métricas e o p-value para o experimento e aleatório. Gera a matriz input para a clusterização. 
+OUTPUT: weka/{deg,bet,neigh,complete}/{matrix.csv,metrics.txt}.
+
