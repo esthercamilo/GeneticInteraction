@@ -42,3 +42,9 @@ threads com OS commands para weka J48 e geração de modelos.
 Calcula a média das métricas e o p-value para o experimento e aleatório. Gera a matriz input para a clusterização. 
 OUTPUT: weka/{deg,bet,neigh,complete}/{matrix.csv,metrics.txt}.
 
+13-Efetua clusterização, gera arquivo cluster_assign.txt. Seleciona aleatoriamente uma árvore do grupo maior.
+
+14-Cálculo meta-vote
+
+15- dados para construção do gráfico ROC.
+
