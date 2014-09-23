@@ -39,5 +39,3 @@ avgs = np.mean(t_array,axis=1)
 for v in range(len(avgs)):
 	output.write('%s\t%s\t%s\n' % (listInst[v][0],listInst[v][1],avgs[v]))
 
-
-	
