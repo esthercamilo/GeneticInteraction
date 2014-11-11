@@ -1,12 +1,14 @@
 from string import *
 
+fcfg = open('config.txt')
+folder = fcfg.readline().rstrip('\n')
 fppi = "ppi.tab"
 freg = "reg.tab"
 fmet = "met.tab"
-fint = open("files/int.tab","w")
+fint = open(folder+"files/int.tab","w")
 
 def getInteraction(namefile):
-	file = open('files/'+namefile)
+	file = open(folder+'files/'+namefile)
 	list = []
 	for line in file:
 		nodes=split(line)

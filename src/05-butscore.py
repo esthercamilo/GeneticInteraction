@@ -3,12 +3,15 @@ import xlrd
 import collections
 from collections import defaultdict
 
-saida=open('files/butscore.tab','w')
+fcfg = open('config.txt')
+folder = fcfg.readline().rstrip('\n')
+
+saida=open(folder+'files/butscore.tab','w')
 saida.write('geneA\tgeneB\ts-score\n')
 
 dicbut={}
 #Butland scores comes in xls file
-workbook = xlrd.open_workbook('data/nmeth.1239-S4.xls')
+workbook = xlrd.open_workbook(folder+'data/nmeth.1239-S4.xls')
 worksheet = workbook.sheet_by_name('st3')
 #calculate the average of repeated values
 s=[]

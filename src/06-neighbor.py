@@ -1,13 +1,16 @@
 import networkx as nx
 import numpy as np
 
+fcfg = open('config.txt')
+folder = fcfg.readline().rstrip('\n')
+
 # Construction of the networks
 
 #read ppi,reg,met
-fppi = open('files/ppi.tab')
-freg = open('files/reg.tab')
-fmet = open('files/met.tab')
-fint = open('files/int.tab')
+fppi = open(folder+'files/ppi.tab')
+freg = open(folder+'files/reg.tab')
+fmet = open(folder+'files/met.tab')
+fint = open(folder+'files/int.tab')
 
 
 def readfile(file):
@@ -45,7 +48,7 @@ nodesGreg = Greg.nodes()
 nodesGmet = Gmet.nodes()
 
 #butland pairs
-fbut = open('files/butscore.tab')
+fbut = open(folder+'files/butscore.tab')
 butheader = fbut.readline()
 dicbut = {}
 for line in fbut:
@@ -53,7 +56,7 @@ for line in fbut:
     dicbut[(d[0], d[1])] = d[2]
 
 #read file genes.tab to get a list of all possible pairs
-fgenes = open('files/genes.tab')
+fgenes = open(folder+'files/genes.tab')
 allpairs = [x.split()[0] for x in fgenes.readlines()]
 
 #Average degree for each network (was having issues to sum - I mantained values on a list)
@@ -144,7 +147,7 @@ for s in llna:
     exec mycommand
 
 #output butland
-outbut = open('files/neigh_butland.tab','w')
+outbut = open(folder+'files/neigh_butland.tab','w')
 header = 'gene1\tgene2\t'+'\t'.join(llna)+'\n'
 outbut.write(header)
 for p in pairsbut:
@@ -153,4 +156,31 @@ for p in pairsbut:
     outbut.write( my_format % (eval(var_dics)))
 
 
-#FALTA FAZER PARA TODOS OS PARES
+
+#ALL PAIRS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
