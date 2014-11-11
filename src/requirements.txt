@@ -1,0 +1,13 @@
+Requements:
+
+Python modules:
+1- libsbml
+http://sbml.org/Software/libSBML/docs/java-api/libsbml-installation.html
+2- xlrd
+https://pypi.python.org/pypi/xlrd
+3- numpy
+sudo apt-get install python-numpy
+4- networkx
+http://networkx.github.io/documentation/latest/install.html
+sudo pip install networkx
+
