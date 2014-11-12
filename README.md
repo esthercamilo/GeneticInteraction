@@ -1,29 +1,29 @@
-﻿GeneticInteraction
+﻿Genetic Interaction
 ==================
 01-networks-ppi-reg-met.py
-Obtém dicionários a partir dos dados do DIP, Regulon e BIGG para criar os arquivos ppi.tab, reg.tab, met.tab.
+Build dictionaries from data from DIP, Regulon and BIGG to create ppi.tab files, reg.tab, met.tab.
 
 02-integrated-interactions.py
-Lê os arquivos de interação ppi.tab, reg.tab e met.tab. Constrói a rede integrada int.tab.
-O arquivo int.tab contém a intersecção não direcionada sem repetições de todas as interações das outras redes.
+Read files ppi.tab, reg.tab and met.tab. Build int.tab integrated network.
+The file int.tab contains the intersection of the three networks.
 
 03-deg-bet.py
-Lê os arquivos de interação ppi.tab, reg.tab, met.tab e int.tab e gera o arquivo centralities.tab, cujo header contém: 
-gene,degInt,degppi,degreg,degmet,betInt,betppi,betreg,betmet,regin,regout,metin,metout. Também gera o arquivo genes.tab contendo todos os genes na rede integrada.
+Read files ppi.tab, reg.tab, met.tab and int.tab to generate centralities.tab file whose header contains:
+gene, degInt, degppi, degreg, degmet, betInt, betppi, betreg, betmet, regin, regout, metin, metout. Also generates the file genes.tab containing all genes in the integrated network.
 
 04-splenght.py
-Gera o arquivo spathsbut.tab (instâncias de Butland) e spathsall.tab (todas as possíveis instâncias), cujo header é "geneA, geneB, sp_int, sp_ppi, sp_met". Cada medida é referente ao comprimento dos caminhos mais curtos para cada rede. Foi a única medida de shortest path que rendeu desempenho diferente do aleatório. Há baixa intersecção entre os genes da rede regulatória e os genes do experimento do Butland, por isso, a rede reg não foi utilizada.
+Generate spathsbut.tab file (Butland instances) and spathsall.tab (all possible instances), whose header is "geneA, geneB, sp_int, sp_ppi, sp_met". Each measurement refers to the length of the shortest paths for each network. It was the only shortest path measure that yielded  different results from random performance.
 
 05-butscore.py
-Cria o arquivo butscore.tab (geneA,geneB,s-score). Tem 1288 instancias.
+Create the file butscore.tab (Genea, geneB, s-score).
 
 06-neighbor.py
-Gera os arquivos neighbor.tab e neigh_butland.tab, cujo header é: 
+Generate the files neighbor.tab and neigh_butland.tab whose header is:
 geneA,geneB,'cnInt','fswInt','jcInt','cnppi','fswppi','jcppi','cnreg','fswreg','jcreg','cnmet','fswmet','jcmet'
-Tem todas as 1288 instancias do butland, pois quando o par de butland não era encontrado na rede, a medida de neighborhood foi definida como zero.
+When the pair of Butland was not found on the network, the measurement was set to zero.
 
 07-folderstructure.py
-cria pastas.
+Set up folders.
 
 08-cent_pairs.py
 cria dois arquivos: cent_but.tab e centall.tab. Eles contêm gene1,gene2,centralidades_max, centralidades_min para todas as redes. (degree e betweeness)

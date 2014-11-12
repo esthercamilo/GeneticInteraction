@@ -1,12 +1,15 @@
 from string import *
 import networkx as nx
 
-fbut=open('files/butscore.tab')
+fcfg = open('config.txt')
+folder = fcfg.readline().rstrip('\n')
+
+fbut=open(folder+'files/butscore.tab')
 fbut.readline()
-fppi=open('files/ppi.tab')
-freg=open('files/reg.tab')
-fmet=open('files/met.tab')
-fint=open('files/int.tab')
+fppi=open(folder+'files/ppi.tab')
+freg=open(folder+'files/reg.tab')
+fmet=open(folder+'files/met.tab')
+fint=open(folder+'files/int.tab')
 
 dicBut={}
 for line in fbut:
@@ -55,7 +58,7 @@ spaths(Gint,dicspint,butkeys)
 spaths(Gppi,dicspppi,butkeys)
 spaths(Gmet,dicspmet,butkeys)
 
-outputbut=open('files/spathsbut.tab','w')
+outputbut=open(folder+'files/spathsbut.tab','w')
 outputbut.write('geneA\tgeneB\tsp_int\tsp_ppi\tsp_met\n')
 for k in dicBut.keys():
         try:
@@ -67,7 +70,13 @@ spaths(Gint,dicspint,allpairs)
 spaths(Gppi,dicspppi,allpairs)
 spaths(Gmet,dicspmet,allpairs)
 
-outputall=open('files/spathsall.tab','w')
+outputall=open(folder+'files/spathsall.tab','w')
 outputall.write('geneA\tgeneB\tsp_int\tsp_ppi\tsp_met\n')
 for k in dicAllPairs.keys():
 	outputall.write('%s\t%s\t%s\t%s\t%s\n' %(k[0],k[1],dicspint[k],dicspppi[k],dicspmet[k]))
+
+
+
+
+
+

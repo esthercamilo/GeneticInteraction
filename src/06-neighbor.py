@@ -6,6 +6,7 @@ folder = fcfg.readline().rstrip('\n')
 
 # Construction of the networks
 
+
 #read ppi,reg,met
 fppi = open(folder+'files/ppi.tab')
 freg = open(folder+'files/reg.tab')
@@ -54,6 +55,10 @@ dicbut = {}
 for line in fbut:
     d = line.split()
     dicbut[(d[0], d[1])] = d[2]
+
+#all pairs
+
+
 
 #read file genes.tab to get a list of all possible pairs
 fgenes = open(folder+'files/genes.tab')

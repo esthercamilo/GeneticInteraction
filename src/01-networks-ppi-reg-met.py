@@ -2,14 +2,20 @@ from string import *
 import re
 from libsbml import *
 import collections
+import sys
 
 #from collections import defaultdict
 #import numpy as np
 #import random as rm
 
+
 #Local of input files
 finput = open("config.txt")
 fstringinput = finput.readline().rstrip("\n")
+
+if not os.path.exists(fstringinput+'/files'):
+		os.makedirs(fstringinput+'/files')
+
 
 #return a dictionary key=GeneName,value=BlatnerName
 def geneBlatner(fileName):
