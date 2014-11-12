@@ -6,7 +6,6 @@ folder = fcfg.readline().rstrip('\n')
 
 # Construction of the networks
 
-
 #read ppi,reg,met
 fppi = open(folder+'files/ppi.tab')
 freg = open(folder+'files/reg.tab')
@@ -32,6 +31,7 @@ GInt = nx.Graph()
 Gppi = nx.Graph()
 Greg = nx.DiGraph()  #directed graph
 Gmet = nx.DiGraph()  #directed graph
+
 #Fill graphs: Int is made up of all networks
 for nodes in listInt:
     GInt.add_edge(nodes[0], nodes[1])
@@ -56,10 +56,6 @@ for line in fbut:
     d = line.split()
     dicbut[(d[0], d[1])] = d[2]
 
-#all pairs
-
-
-
 #read file genes.tab to get a list of all possible pairs
 fgenes = open(folder+'files/genes.tab')
 allpairs = [x.split()[0] for x in fgenes.readlines()]
@@ -73,13 +69,17 @@ def avgDegree(dicValues):
     return avg
 
 
+
+#CONTINUAR ARRUMANDO ESSA FUNCAO
+
+
 #FSW(network) -> returns a dictionary with the gene and the fsw value key=g1,g2 value=fsw
 def FSW(G, pairs):
     dic = {}
-    nodes = G.nodes()
+    n = G.nodes()
     avg = avgDegree(G.degree())
     for p in pairs:
-        if p[0] in nodes and p[1] in nodes:
+        if p[0] in n and p[1] in n:
             n1 = G.neighbors(p[0])
             n2 = G.neighbors(p[1])
             i = len(set(n1) & set(n2))  #intersection
@@ -147,25 +147,35 @@ llna = ['cnInt', 'fswInt', 'jcInt', 'cnppi', 'fswppi', 'jcppi', 'cnreg', 'fswreg
 pairsbut = dicbut.keys()
 
 #Butland
-for s in llna:
-    mycommand = 'dic' + s + ' = CN(G' + s[-3:] + ',pairsbut)'
-    exec mycommand
+for s in range(0,len(llna),3):
+    c1 = 'dic' + llna[s] + ' = CN(G' + llna[s][-3:] + ',pairsbut)'
+    c2 = 'dic' + llna[s+1] + ' = FSW(G' + llna[s+1][-3:] + ',pairsbut)'
+    c3 = 'dic' + llna[s+2] + ' = JC(G' + llna[s+2][-3:] + ',pairsbut)'
+    exec c1
+    exec c2
+    exec c3
+
 
 #output butland
 outbut = open(folder+'files/neigh_butland.tab','w')
 header = 'gene1\tgene2\t'+'\t'.join(llna)+'\n'
 outbut.write(header)
 for p in pairsbut:
-    var_dics = 'p[0],p[1],'+','.join(['dic'+x+'[p]' for x in llna])
-    my_format = 13*"%s\t"+"%s\n"
-    outbut.write( my_format % (eval(var_dics)))
-
-
+    try:
+        var_dics = 'p[0],p[1],'+','.join(['dic'+x+'[p]' for x in llna])
+        my_format = 13*"%s\t"+"%s\n"
+        outbut.write( my_format % (eval(var_dics)))
+    except:
+        print var_dics
 
 #ALL PAIRS
 
-
-
+outallpairs=open(folder+'files/neigh_all.tab','w')
+outallpairs.write(header)
+for p in allpairs:
+    var_dics = 'p[0],p[1],'+','.join(['dic'+x+'[p]' for x in llna])
+    my_format = 13*"%s\t"+"%s\n"
+    outbut.write( my_format % (eval(var_dics)))
 
 
 
