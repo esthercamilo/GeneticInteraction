@@ -1,13 +1,16 @@
-types = ['bet', 'bet_spaths', 'complete', 'deg', 'neigh', 'spaths']
+fcfg = open('config.txt')
+folder = fcfg.readline().rstrip('\n')
+
+types = ['bet', 'bet_sp', 'complete', 'deg', 'neigh', 'spaths']
 
 # open files
-fcent = open('files/cent_but.tab')
+fcent = open(folder+'files/cent_but.tab')
 hcent = fcent.readline().split()
-fneig = open('files/neigh_butland.tab')
+fneig = open(folder+'files/neigh_butland.tab')
 hneig = fneig.readline().split()
-fshor = open('files/spathsbut.tab')
+fshor = open(folder+'files/spathsbut.tab')
 hshor = fshor.readline().split()
-fbut = open('files/butscore.tab')
+fbut = open(folder+'files/butscore.tab')
 hbut = fbut.readline()
 
 #read butland

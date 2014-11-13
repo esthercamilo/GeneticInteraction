@@ -56,9 +56,17 @@ for line in fbut:
     d = line.split()
     dicbut[(d[0], d[1])] = d[2]
 
+dicallpairs = {}
+for g1 in range(len(nodesGInt)):
+    for g2 in range(g1+1,len(nodesGInt)):
+        dicallpairs[(nodesGInt[g1],nodesGInt[g2])]='?'
+
+
 #read file genes.tab to get a list of all possible pairs
-fgenes = open(folder+'files/genes.tab')
-allpairs = [x.split()[0] for x in fgenes.readlines()]
+#fgenes = open(folder+'files/genes.tab')
+#allpairs = [x.split()[0] for x in fgenes.readlines()]
+allpairs = dicallpairs.keys()
+
 
 #Average degree for each network (was having issues to sum - I mantained values on a list)
 def avgDegree(dicValues):
@@ -105,7 +113,7 @@ def FSW(G, pairs):
             dic[p] = fsw
         else:
             dic[p]=0
-        return dic
+    return dic
 
 
 def CN(G, pairs):  #common neighbors
@@ -166,18 +174,27 @@ for p in pairsbut:
         my_format = 13*"%s\t"+"%s\n"
         outbut.write( my_format % (eval(var_dics)))
     except:
-        print var_dics
+        print p
 
 #ALL PAIRS
+
+for s in range(0,len(llna),3):
+    c1 = 'dic' + llna[s] + ' = CN(G' + llna[s][-3:] + ',allpairs)'
+    c2 = 'dic' + llna[s+1] + ' = FSW(G' + llna[s+1][-3:] + ',allpairs)'
+    c3 = 'dic' + llna[s+2] + ' = JC(G' + llna[s+2][-3:] + ',allpairs)'
+    exec c1
+    exec c2
+    exec c3
 
 outallpairs=open(folder+'files/neigh_all.tab','w')
 outallpairs.write(header)
 for p in allpairs:
-    var_dics = 'p[0],p[1],'+','.join(['dic'+x+'[p]' for x in llna])
-    my_format = 13*"%s\t"+"%s\n"
-    outbut.write( my_format % (eval(var_dics)))
-
-
+    try:
+        var_dics = 'p[0],p[1],'+','.join(['dic'+x+'[p]' for x in llna])
+        my_format = 13*"%s\t"+"%s\n"
+        outbut.write( my_format % (eval(var_dics)))
+    except:
+        print p
 
 
 

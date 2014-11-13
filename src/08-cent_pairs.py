@@ -1,4 +1,8 @@
-fgenes=open('files/genes.tab')
+fcfg = open('config.txt')
+folder = fcfg.readline().rstrip('\n')
+
+
+fgenes=open(folder+'files/genes.tab')
 genes = [x.split()[0] for x in fgenes.readlines()]
 
 allpairs=[]
@@ -6,7 +10,7 @@ for i in range(len(genes)):
     for j in range(i+1,len(genes)):
         allpairs.append((genes[i],genes[j]))
 
-fbut=open('files/butscore.tab')
+fbut=open(folder+'files/butscore.tab')
 butheader = fbut.readline()
 dicbut={}
 for line in fbut:
@@ -14,7 +18,7 @@ for line in fbut:
     dicbut[(d[0],d[1])]=d[2]
 fbut.close()
 
-fcent=open('files/centralites.tab')
+fcent=open(folder+'files/centralites.tab')
 centheader = fcent.readline()
 llca=centheader.split()[1:]
 diccent={}
@@ -36,7 +40,7 @@ def mergeLists(list1,list2):
 	return newList
 
 def savePairs(nameFile,pares):
-    out=open('files/'+nameFile+'.tab','w')
+    out=open(folder+'files/'+nameFile+'.tab','w')
     h_str='geneA,geneB,'+','.join([x+'_min'+','+x+'_max' for x in llca])+'\n'
     out.write(h_str)
     

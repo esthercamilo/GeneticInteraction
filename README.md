@@ -18,7 +18,7 @@ Generate spathsbut.tab file (Butland instances) and spathsall.tab (all possible 
 Create the file butscore.tab (Genea, geneB, s-score).
 
 06-neighbor.py
-Generate the files neighbor.tab and neigh_butland.tab whose header is:
+Generate the files neig_all.tab and neigh_butland.tab whose header is:
 geneA,geneB,'cnInt','fswInt','jcInt','cnppi','fswppi','jcppi','cnreg','fswreg','jcreg','cnmet','fswmet','jcmet'
 When the pair of Butland was not found on the network, the measurement was set to zero.
 
@@ -26,11 +26,10 @@ When the pair of Butland was not found on the network, the measurement was set t
 Set up folders.
 
 08-cent_pairs.py
-cria dois arquivos: cent_but.tab e centall.tab. Eles contêm gene1,gene2,centralidades_max, centralidades_min para todas as redes. (degree e betweeness)
-O arquivo cent_but.tab tem 1013 instâncias que são todos os pares do butland que estão na rede integrada.
+create two files: cent_but.tab e centall.tab. They contains "gene1,gene2,centralidades_max, centralidades_min" for all networks (degree e betweeness)
 
 09-trainsetcsv.py
-cria os csv não balanceados, os 100 balanceados para cada tipo de experimento e preenche os csv para o experimento de clusterização.
+create the training sets not balanced for each type of experiment
 
 10-trainset_balanced.py
 gera 100 csv para cada tipo de atributo e para o experimento de clustering.
