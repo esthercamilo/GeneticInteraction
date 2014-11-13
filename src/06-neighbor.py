@@ -78,8 +78,6 @@ def avgDegree(dicValues):
 
 
 
-#CONTINUAR ARRUMANDO ESSA FUNCAO
-
 
 #FSW(network) -> returns a dictionary with the gene and the fsw value key=g1,g2 value=fsw
 def FSW(G, pairs):
@@ -192,7 +190,7 @@ for p in allpairs:
     try:
         var_dics = 'p[0],p[1],'+','.join(['dic'+x+'[p]' for x in llna])
         my_format = 13*"%s\t"+"%s\n"
-        outbut.write( my_format % (eval(var_dics)))
+        outallpairs.write( my_format % (eval(var_dics)))
     except:
         print p
 

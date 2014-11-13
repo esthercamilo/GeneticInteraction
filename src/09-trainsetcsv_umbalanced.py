@@ -26,8 +26,15 @@ exec ('\n'.join([x + '={}' for x in start_dics]))
 
 #dics deg e bet
 dicdegbet={}
+dic_deg={}
+dic_bet={}
+dic_neigh={}
+dic_spaths={}
+dic_bet_spaths={}
+dic_complete={}
+
 for line in fcent:
-    d = line.split()
+    d = line.rstrip('\n').split(",")
     p = (d[0], d[1])
     dic_deg[p] = d[2:10] + d[18:]
     dic_bet[p] = d[10:18]
@@ -56,7 +63,7 @@ for k in dic_bet.keys():
 
 #Output umbalanced:
 def writedic(t,dic,header):
-    file = open('weka/'+t+'/csv/umbalanced_num.csv','w')
+    file = open(folder+'weka/'+t+'/csv/umbalanced_num.csv','w')
     file.write(header)
     for k,v in dic.iteritems():
         file.write(k[0]+','+k[1]+','+','.join([x for x in v])+','+dicbut[k]+'\n')
@@ -74,7 +81,7 @@ headSho = 'gene1,gene2,'+','.join(hshor[2:])+',score\n'
 writedic('spaths', dic_spaths, headSho)
 
 headBetSho = 'gene1,gene2,'+','.join(hcent[10:18])+','+','.join(hshor[2:])+',score\n'
-writedic('bet_spaths', dic_bet_spaths, headBetSho)
+writedic('bet_sp', dic_bet_spaths, headBetSho)
 
 headComp = 'gene1,gene2,'+','.join(hcent[2:])+','+','.join(hneig)+','+','.join(hshor)+',score\n'
 writedic('complete', dic_complete, headComp)
