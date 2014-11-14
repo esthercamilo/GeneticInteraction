@@ -1,5 +1,8 @@
 ﻿Genetic Interaction
 ==================
+
+To follow this workflow, first you need to satisfy all requirements described in the file "requirement.txt".
+
 01-networks-ppi-reg-met.py
 Build dictionaries from data from DIP, Regulon and BIGG to create ppi.tab files, reg.tab, met.tab.
 
@@ -32,7 +35,7 @@ create two files: cent_but.tab e centall.tab. They contains "gene1,gene2,central
 create the training sets not balanced for each type of experiment
 
 10-trainset_balanced.py
-gera 100 csv para cada tipo de atributo e para o experimento de clustering.
+create 100 csv files (experiment and random) for each attribute type and for the clustering experiment.
 
 11-wekaclassifier.py
 Várias threads para cálculo J48, geração de modelos, pngs, out.

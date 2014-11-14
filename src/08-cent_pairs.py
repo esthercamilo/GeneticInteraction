@@ -40,7 +40,7 @@ def mergeLists(list1,list2):
 	return newList
 
 def savePairs(nameFile,pares):
-    out=open(folder+'files/'+nameFile+'.tab','w')
+    out=open(folder+'files/'+nameFile+'.csv','w')
     h_str='geneA,geneB,'+','.join([x+'_min'+','+x+'_max' for x in llca])+'\n'
     out.write(h_str)
     

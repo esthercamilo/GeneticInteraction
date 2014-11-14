@@ -12,7 +12,8 @@ def makedir(namedir):
 
 def folders(ce):
 	makedir(folder+'weka/'+ce+'/arff')
-	makedir(folder+'weka/'+ce+'/csv')
+	makedir(folder+'weka/'+ce+'/csv/exp')
+	makedir(folder+'weka/'+ce+'/csv/rnd')
 	makedir(folder+'weka/'+ce+'/dot')
 	makedir(folder+'weka/'+ce+'/model')
 	makedir(folder+'weka/'+ce+'/out')

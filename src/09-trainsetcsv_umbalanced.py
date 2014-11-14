@@ -5,11 +5,11 @@ types = ['bet', 'bet_sp', 'complete', 'deg', 'neigh', 'spaths']
 
 # open files
 fcent = open(folder+'files/cent_but.tab')
-hcent = fcent.readline().split()
+hcent = fcent.readline().rstrip('\n').split(',')
 fneig = open(folder+'files/neigh_butland.tab')
-hneig = fneig.readline().split()
+hneig = fneig.readline().rstrip('\n').split(',')
 fshor = open(folder+'files/spathsbut.tab')
-hshor = fshor.readline().split()
+hshor = fshor.readline().rstrip('\n').split(',')
 fbut = open(folder+'files/butscore.tab')
 hbut = fbut.readline()
 
@@ -17,7 +17,11 @@ hbut = fbut.readline()
 dicbut={}
 for line in fbut:
     d = line.split()
-    dicbut[(d[0],d[1])]=d[2]
+    float_d = float(d[2])
+    classe = "AGG"
+    if float_d>0:
+        classe = "ALL"
+    dicbut[(d[0],d[1])]=classe
 
 #generate a dictionary for each type
 start_dics = ['dic_' + x for x in types]

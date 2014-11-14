@@ -1,4 +1,11 @@
-Requements:
+Requeriments:
+
+First set up the file "config.txt". The first line contains the path to the work folder you want to use and the
+second line contains the destination of your weka.jar
+
+WEKA
+https://weka.waikato.ac.nz/explorer
+May be needed to set the classpath variable pointing to weka.jar
 
 Python modules:
 1- libsbml
@@ -10,4 +17,8 @@ sudo apt-get install python-numpy
 4- networkx
 http://networkx.github.io/documentation/latest/install.html
 sudo pip install networkx
+5- Graphviz
+http://www.graphviz.org/
+
+
 

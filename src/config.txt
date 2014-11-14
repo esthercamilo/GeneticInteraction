@@ -1,1 +1,2 @@
 /home/esther/projects/GI/
+/usr/share/java/weka.jar
