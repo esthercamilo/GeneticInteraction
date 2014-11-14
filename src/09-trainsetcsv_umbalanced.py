@@ -5,11 +5,11 @@ types = ['bet', 'bet_sp', 'complete', 'deg', 'neigh', 'spaths']
 
 # open files
 fcent = open(folder+'files/cent_but.tab')
-hcent = fcent.readline().rstrip('\n').split(',')
+hcent = fcent.readline().split()
 fneig = open(folder+'files/neigh_butland.tab')
-hneig = fneig.readline().rstrip('\n').split(',')
+hneig = fneig.readline().split()
 fshor = open(folder+'files/spathsbut.tab')
-hshor = fshor.readline().rstrip('\n').split(',')
+hshor = fshor.readline().split()
 fbut = open(folder+'files/butscore.tab')
 hbut = fbut.readline()
 

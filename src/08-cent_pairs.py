@@ -40,8 +40,8 @@ def mergeLists(list1,list2):
 	return newList
 
 def savePairs(nameFile,pares):
-    out=open(folder+'files/'+nameFile+'.csv','w')
-    h_str='geneA,geneB,'+','.join([x+'_min'+','+x+'_max' for x in llca])+'\n'
+    out=open(folder+'files/'+nameFile+'.tab','w')
+    h_str='geneA\tgeneB,'+'\t'.join([x+'_min'+','+x+'_max' for x in llca])+'\n'
     out.write(h_str)
     
     for p in pares:
@@ -50,7 +50,7 @@ def savePairs(nameFile,pares):
             centB = diccent[p[1]]
             cAcB = mergeLists(centA,centB)
             strCent = ','.join([x for x in cAcB])+','
-            out.write(p[0]+','+p[1]+','+strCent+'\n')
+            out.write(p[0]+'\t'+p[1]+'\t'+strCent+'\n')
         except:
             pass
         
