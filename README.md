@@ -1,7 +1,7 @@
 ﻿Genetic Interaction
 ==================
 
-To follow this workflow, first you need to satisfy all requirements described in the file "src/requirement.txt".
+To follow this workflow, first you need to satisfy all requirements described in the file "requirement.txt".
 
 01-networks-ppi-reg-met.py
 Build dictionaries from data from DIP, Regulon and BIGG to create ppi.tab files, reg.tab, met.tab.

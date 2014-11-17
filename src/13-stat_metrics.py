@@ -120,10 +120,10 @@ def readOutFile(tipo):
 
 
 
-# for t in types:
-#     metricas(t,"metrics.txt")
-#     readOutFile(t)
-#
+for t in types:
+    metricas(t,"metrics.txt")
+    readOutFile(t)
+
 
 
 #MATRIX INPUT FOR CLUSTERING EXPERIMENT
