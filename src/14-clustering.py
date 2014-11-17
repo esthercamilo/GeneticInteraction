@@ -18,12 +18,13 @@ def clustering():
 		except:
 			pass
 		os.system(
-			'java weka.clusterers.SimpleKMeans -p 0 -N 4 -t '+folder+'weka/' + t + '/matrix.csv > '+folder+'weka/' + t + '/cluster_assign.txt')
+			'java -cp '+wekalocation+' weka.clusterers.SimpleKMeans -p 0 -N 4 -t '+folder+'weka/' + t + '/matrix.csv > '+folder+'weka/' + t + '/cluster_assign.txt')
 
 
 
+#clustering()
 
-t2=[100,200,400,600,800,1000]
+t2=[100]#,200,400,600,800,1000]
 
 def clust2():
 	for t in t2:
@@ -32,7 +33,7 @@ def clust2():
 			f_out = folder+'weka/complete/cluster_algorithm/' + str(t) + '/'+str(i)+'/cluster_assign.txt'
 			os.system('java -cp '+wekalocation+' weka.clusterers.SimpleKMeans -p 0 -N 4 -t '+f_in+' > '+f_out)
 
-clust2()	
+clust2()
 	
 	
 

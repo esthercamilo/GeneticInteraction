@@ -119,7 +119,16 @@ def readOutFile(tipo):
         saida.write(line + "\n")
 
 
-for t in types:
-    metricas(t,"metrics.txt")
-    readOutFile(t)
+
+# for t in types:
+#     metricas(t,"metrics.txt")
+#     readOutFile(t)
+#
+
+
+#MATRIX INPUT FOR CLUSTERING EXPERIMENT
+for c in clust:
+    for g in range(1,11):
+        tipo = "complete/cluster_algorithm/"+str(c)+"/"+str(g)
+        readOutFile(tipo)
 

@@ -101,5 +101,17 @@ writedic('bet_sp', dic_bet_spaths, headBetSho)
 headComp = 'gene1,gene2,'+','.join(hcent[2:])+','+','.join(hneig[2:])+','+','.join(hshor[2:])+',score\n'
 writedic('complete', dic_complete, headComp)
 
+#Create umbalanced for clustering experiment
+
+clust = [100, 200, 400, 600, 800, 1000]
+for c in clust:
+        for g in range(1,11):
+            for i in range(1, c+1):
+                t = "complete/cluster_algorithm/"+str(c)+"/"+str(g)
+                headComp = 'gene1,gene2,'+','.join(hcent[2:])+','+','.join(hneig[2:])+','+','.join(hshor[2:])+',score\n'
+                writedic(t, dic_complete, headComp)
+
+
+
 
 

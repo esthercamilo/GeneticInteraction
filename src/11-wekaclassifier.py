@@ -81,6 +81,7 @@ def arffcluster():
     print '***********CLUSTER EXPERIMENT: Converting to arff\n '
     for c in clust:
         for n in range(1, 11):
+            os.system("java -cp "+wekalocation+" weka.filters.unsupervised.attribute.Remove -R 1,2 -i "+folder+"/weka/complete/cluster_algorithm/"+str(c)+"/"+str(n)+"/csv/umbalanced_nom.csv -o "+ folder+ "weka/complete/cluster_algorithm/"+str(c)+"/"+str(n)+"/arff/umbalanced_nom.arff")
             for i in range(1, c + 1):
                 print "c:",c," n:",n," i:",i
                 f1 = folder+ "weka/complete/cluster_algorithm/" + str(c)+"/" + str(n) + "/csv/" + str(i) + ".csv"
@@ -90,15 +91,29 @@ def arffcluster():
 
 
 def j48_cluster():
-	print '***********J48 output result, dot, model\n '
-	nLeaves = 50
-	for c in clust:
-		for n in range(1,11):
-			for i in range(1, c+1):
-				f2 = folder+"weka/complete/cluster_algorithm/" + str(c)+"/" + str(n) + "/arff/" + str(i) + ".arff"
-				f4 = folder+"weka/complete/cluster_algorithm/" + str(c)+"/" + str(n) + "/result/" + str(i) + ".result"
+    print '***********J48 output result, model\n '
+    nLeaves = 50
+    for c in clust:
+        for n in range(1,11):
+            for i in range(1, c+1):
                 print "c:",c," n:",n," i:",i
-                os.system("java -cp "+wekalocation+" -Xmx1000m weka.classifiers.trees.J48 -M " + str(nLeaves) + " -t "+f2+" -i  > "+f4)
+                f2 = folder+"weka/complete/cluster_algorithm/" + str(c)+"/" + str(n) + "/arff/" + str(i) + ".arff"
+                f3 = folder+"weka/complete/cluster_algorithm/" + str(c)+"/" + str(n) + "/model/" + str(i) + ".model"
+                f4 = folder+"weka/complete/cluster_algorithm/" + str(c)+"/" + str(n) + "/result/" + str(i) + ".result"
+                os.system("java -cp "+wekalocation+" -Xmx1000m weka.classifiers.trees.J48 -d "+f3+" -M " + str(nLeaves) + " -t "+f2+" -i  > "+f4)
+
+
+def setModelCluster():
+    print '***********APPLYING MODEL IN THE CLUSTERS\n'
+    for c in clust:
+        for g in range(1,11):
+            for i in range(1, c+1):
+                t = "complete/cluster_algorithm/"+str(c)+"/"+str(g)
+                f1 = folder+ "weka/"+t+"/arff/umbalanced_nom.arff"
+                f2 = folder+ "weka/"+t+"/model/"+ str(i)+".model"
+                f3 = folder+ "weka/"+t+"/out/"+ str(i)+".out"
+                os.system("java -cp "+wekalocation+" -Xmx1000m weka.classifiers.trees.J48 -p 0 -T "+ f1+" -l "+ f2 + " >  "+ f3)
+
 
 
 threadConvert = Thread(target=convert, args=())
@@ -128,3 +143,7 @@ threadAffClust.join()
 th_j48_cluster = Thread(target=j48_cluster(), args = ())
 th_j48_cluster.start()
 th_j48_cluster.join()
+
+th_Model_cluster = Thread(target=setModelCluster(), args = ())
+th_Model_cluster.start()
+th_Model_cluster.join()

@@ -50,6 +50,7 @@ create the file "metrics.txt" with the average of all performance measures and g
 14-clustering.py
 Apply weka clustering k-means with the data obtained in the step 12. Output: "cluster_assign.txt".
 
+15-reptree.py
+Find the tree closest to the centroid of the dominant cluster.
 
-15-summaryClustAssign.py
-Exclusive for the clustering experiment. Create the output file named
+
