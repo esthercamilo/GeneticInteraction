@@ -3,6 +3,8 @@
 
 To follow this workflow, first you need to satisfy all requirements described in the file "requirement.txt".
 
+Inside the src folder, you will find all python scripts needed to reproduce the experiment.
+
 01-networks-ppi-reg-met.py
 Build dictionaries from data from DIP, Regulon and BIGG to create ppi.tab files, reg.tab, met.tab.
 
