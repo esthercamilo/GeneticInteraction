@@ -1,3 +1,8 @@
+#################################
+#AUTHOR: ESTHER CAMILO          #
+#e-mail: esthercamilo@gmail.com #
+#################################
+
 from string import *
 import os
 
@@ -12,6 +17,7 @@ def makedir(namedir):
 
 def folders(ce):
 	makedir(folder+'weka/'+ce+'/arff')
+	makedir(folder+'weka/'+ce+'/arff_rnd')
 	makedir(folder+'weka/'+ce+'/csv/exp')
 	makedir(folder+'weka/'+ce+'/csv/rnd')
 	makedir(folder+'weka/'+ce+'/dot')
@@ -19,9 +25,10 @@ def folders(ce):
 	makedir(folder+'weka/'+ce+'/out')
 	makedir(folder+'weka/'+ce+'/png')
 	makedir(folder+'weka/'+ce+'/result')
+	makedir(folder+'weka/'+ce+'/result_rnd')
 	makedir(folder+'weka/'+ce+'/vote_result')
+	makedir(folder+'weka/'+ce+'/vote_result_rnd')
 	makedir(folder+'weka/'+ce+'/vote_threshold')
-	makedir(folder+'weka/'+ce+'/vote_model')
 	
 folders('deg')
 folders('bet')
@@ -36,6 +43,7 @@ def foldersCluster(ce):
         makedir(folder+'weka/complete/cluster_algorithm/'+ce+'/'+str(i)+'/csv')
         makedir(folder+'weka/complete/cluster_algorithm/'+ce+'/'+str(i)+'/model')
         makedir(folder+'weka/complete/cluster_algorithm/'+ce+'/'+str(i)+'/out')
+        makedir(folder+'weka/complete/cluster_algorithm/'+ce+'/'+str(i)+'/result')
 
 foldersCluster('100')
 foldersCluster('200')

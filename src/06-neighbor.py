@@ -1,3 +1,8 @@
+#################################
+#AUTHOR: ESTHER CAMILO          #
+#e-mail: esthercamilo@gmail.com #
+#################################
+
 import networkx as nx
 import numpy as np
 

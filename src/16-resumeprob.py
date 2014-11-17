@@ -1,4 +1,9 @@
-#given a probability file, this program extracts the probability value and 
+#################################
+#AUTHOR: ESTHER CAMILO          #
+#e-mail: esthercamilo@gmail.com #
+#################################
+
+#given a probability file, this program extracts the probability value and
 #write a file with the instance name with the purpose of creating a prioritization list.
 
 #to sort it in ascending order I used linux bash (sort)

@@ -1,7 +1,7 @@
 ﻿Genetic Interaction
 ==================
 
-To follow this workflow, first you need to satisfy all requirements described in the file "requirement.txt".
+To follow this workflow, first you need to satisfy all requirements described in the file "src/requirement.txt".
 
 01-networks-ppi-reg-met.py
 Build dictionaries from data from DIP, Regulon and BIGG to create ppi.tab files, reg.tab, met.tab.
@@ -14,11 +14,11 @@ The file int.tab contains the intersection of the three networks.
 Read files ppi.tab, reg.tab, met.tab and int.tab to generate centralities.tab file whose header contains:
 gene, degInt, degppi, degreg, degmet, betInt, betppi, betreg, betmet, regin, regout, metin, metout. Also generates the file genes.tab containing all genes in the integrated network.
 
-04-splenght.py
-Generate spathsbut.tab file (Butland instances) and spathsall.tab (all possible instances), whose header is "geneA, geneB, sp_int, sp_ppi, sp_met". Each measurement refers to the length of the shortest paths for each network. It was the only shortest path measure that yielded  different results from random performance.
-
-05-butscore.py
+04-butscore.py
 Create the file butscore.tab (Genea, geneB, s-score).
+
+05-splenght.py
+Generate spathsbut.tab file (Butland instances) and spathsall.tab (all possible instances), whose header is "geneA, geneB, sp_int, sp_ppi, sp_met". Each measurement refers to the length of the shortest paths for each network. It was the only shortest path measure that yielded  different results from random performance.
 
 06-neighbor.py
 Generate the files neig_all.tab and neigh_butland.tab whose header is:
@@ -38,16 +38,18 @@ create the training sets not balanced for each type of experiment
 create 100 csv files (experiment and random) for each attribute type and for the clustering experiment.
 
 11-wekaclassifier.py
-Várias threads para cálculo J48, geração de modelos, pngs, out.
+Convert the csv files to arff by removing the two first rows (gene names). Correct umbalanced file to match with the undersampling training file.
+Apply J48 for all training sets, including for the clustering experiment.
 
-12-stat_metrics.py
-cria arquivo metrics.txt com a média das medidas de desempenho e a matriz input para experimento de clusterização.
+12- metaVote.py
+compute the Meta Vote for each set of attributes. Fill the folders "vote_result", "vote_model" and "vote_threshold". The last one is used
 
-13-clustering.py
-Efetual weka clustering k-means com os dados gerados na etapa anterior.
+13-stat_metrics.py
+create the file "metrics.txt" with the average of all performance measures and generate an input matrix ("matrix.txt") for the clustering experiment.
 
-14- metaVote.py
-calcula meta vote para cada conjunto de atributos
+14-clustering.py
+Apply weka clustering k-means with the data obtained in the step 12. Output: "cluster_assign.txt".
+
 
 15-summaryClustAssign.py
-exclusivo para o experimento de clusterização. Cria um arquivo com o número de árvores em cada cluster para o cálculo da entropia no R.
+Exclusive for the clustering experiment. Create the output file named

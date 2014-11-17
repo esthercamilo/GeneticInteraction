@@ -1,3 +1,8 @@
+#################################
+#AUTHOR: ESTHER CAMILO          #
+#e-mail: esthercamilo@gmail.com #
+#################################
+
 from string import *
 import re
 import os

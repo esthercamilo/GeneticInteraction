@@ -1,3 +1,8 @@
+#################################
+#AUTHOR: ESTHER CAMILO          #
+#e-mail: esthercamilo@gmail.com #
+#################################
+
 t2=[200,400,600,800,1000]
 
 f_out = open('weka/complete/cluster_algorithm/summary.txt','w')

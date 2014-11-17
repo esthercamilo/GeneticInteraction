@@ -51,6 +51,7 @@ for line in arq:
     else:
         listapos.append(line.replace(str(score), 'ALL'))
 size = min(len(listaneg),len(listapos))
+
 l = [100,200, 400, 600, 800, 1000]
 for v in l:
     for n in range (1,11): #10 em cada arquivo

@@ -1,3 +1,8 @@
+#################################
+#AUTHOR: ESTHER CAMILO          #
+#e-mail: esthercamilo@gmail.com #
+#################################
+
 fcfg = open('config.txt')
 folder = fcfg.readline().rstrip('\n')
 
@@ -15,13 +20,16 @@ hbut = fbut.readline()
 
 #read butland
 dicbut={}
+dicnombut={}
 for line in fbut:
     d = line.split()
     float_d = float(d[2])
     classe = "AGG"
     if float_d>0:
         classe = "ALL"
-    dicbut[(d[0],d[1])]=classe
+    dicbut[(d[0],d[1])]=d[2]
+    dicnombut[(d[0],d[1])]=classe
+
 
 #generate a dictionary for each type
 start_dics = ['dic_' + x for x in types]
@@ -38,7 +46,7 @@ dic_bet_spaths={}
 dic_complete={}
 
 for line in fcent:
-    d = line.rstrip('\n').split(",")
+    d = line.split()
     p = (d[0], d[1])
     dic_deg[p] = d[2:10] + d[18:]
     dic_bet[p] = d[10:18]
@@ -67,10 +75,13 @@ for k in dic_bet.keys():
 
 #Output umbalanced:
 def writedic(t,dic,header):
-    file = open(folder+'weka/'+t+'/csv/umbalanced_num.csv','w')
-    file.write(header)
+    file1 = open(folder+'weka/'+t+'/csv/umbalanced_num.csv','w')
+    file2 = open(folder+'weka/'+t+'/csv/umbalanced_nom.csv','w')
+    file1.write(header)
+    file2.write(header)
     for k,v in dic.iteritems():
-        file.write(k[0]+','+k[1]+','+','.join([x for x in v])+','+dicbut[k]+'\n')
+        file1.write(k[0]+','+k[1]+','+','.join([x for x in v])+','+dicbut[k]+'\n')
+        file2.write(k[0]+','+k[1]+','+','.join([x for x in v])+','+dicnombut[k]+'\n')
 
 headDeg = 'gene1,gene2,'+','.join(hcent[2:10]+hcent[18:])+',score\n'
 writedic('deg', dic_deg,headDeg)
@@ -87,7 +98,7 @@ writedic('spaths', dic_spaths, headSho)
 headBetSho = 'gene1,gene2,'+','.join(hcent[10:18])+','+','.join(hshor[2:])+',score\n'
 writedic('bet_sp', dic_bet_spaths, headBetSho)
 
-headComp = 'gene1,gene2,'+','.join(hcent[2:])+','+','.join(hneig)+','+','.join(hshor)+',score\n'
+headComp = 'gene1,gene2,'+','.join(hcent[2:])+','+','.join(hneig[2:])+','+','.join(hshor[2:])+',score\n'
 writedic('complete', dic_complete, headComp)
 
 
