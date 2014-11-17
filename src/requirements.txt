@@ -3,6 +3,11 @@ Requeriments:
 First set up the file "config.txt". The first line contains the path to the work folder you want to use and the
 second line contains the destination of your weka.jar
 
+Next, unzip the folder "data.zip" inside the src folder and past the uncompressed folder in your work folder (the path
+you set in the step before).
+
+Install the following softwares:
+
 WEKA
 https://weka.waikato.ac.nz/explorer
 May be needed to set the classpath variable pointing to weka.jar
@@ -20,5 +25,5 @@ sudo pip install networkx
 5- Graphviz
 http://www.graphviz.org/
 
-
+Now you are all set to reproduce the experiment.
 
