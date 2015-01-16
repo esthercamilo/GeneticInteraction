@@ -17,13 +17,27 @@ fshor = open(folder+'files/spathsbut.tab')
 hshor = fshor.readline().split()
 fbut = open(folder+'files/butscore.tab')
 hbut = fbut.readline()
+fbabu = open(folder+'data/s-score-babu.tab')
+hbabu = fbabu.readline()
 
 #read butland
-dicbut={}
-dicnombut={}
+dicbut={}    #numeric class
+dicnombut={} #nominal class
 for line in fbut:
     d = line.split()
     float_d = float(d[2])
+    classe = "AGG"
+    if float_d>0:
+        classe = "ALL"
+    dicbut[(d[0],d[1])]=d[2]
+    dicnombut[(d[0],d[1])]=classe
+
+#read Babu file
+dicbabu={}    #numeric class
+dicnombabu={} #nominal class
+for line in fbabu:
+    d = line.split()
+    float_d = float(d[2].replace(',', '.'))
     classe = "AGG"
     if float_d>0:
         classe = "ALL"
@@ -35,15 +49,7 @@ for line in fbut:
 start_dics = ['dic_' + x for x in types]
 #initialize
 exec ('\n'.join([x + '={}' for x in start_dics]))
-
-#dics deg e bet
 dicdegbet={}
-dic_deg={}
-dic_bet={}
-dic_neigh={}
-dic_spaths={}
-dic_bet_spaths={}
-dic_complete={}
 
 for line in fcent:
     d = line.split()
@@ -67,10 +73,10 @@ for line in fshor:
 
 #dic bet_spaths
 for k in dic_bet.keys():
-    dic_bet_spaths[k] = dic_bet[k] + dic_spaths[k]
+    dic_bet_sp[k] = dic_bet[k] + dic_spaths[k]
 
 #dic complete
-for k in dic_bet.keys():
+for k in dic_complete.keys():
     dic_complete[k] = dicdegbet[k] + dic_neigh[k] + dic_spaths[k]
 
 #Output umbalanced:
@@ -84,33 +90,33 @@ def writedic(t,dic,header):
         file2.write(k[0]+','+k[1]+','+','.join([x for x in v])+','+dicnombut[k]+'\n')
 
 headDeg = 'gene1,gene2,'+','.join(hcent[2:10]+hcent[18:])+',score\n'
-writedic('deg', dic_deg,headDeg)
+writedic('standart/deg', dic_deg,headDeg)
 
 headBet = 'gene1,gene2,'+','.join(hcent[10:18])+',score\n'
-writedic('bet', dic_bet,headBet)
+writedic('standart/bet', dic_bet,headBet)
 
 headNei = 'gene1,gene2,'+','.join(hneig[2:])+',score\n'
-writedic('neigh',dic_neigh,headNei)
+writedic('standart/neigh',dic_neigh,headNei)
 
 headSho = 'gene1,gene2,'+','.join(hshor[2:])+',score\n'
-writedic('spaths', dic_spaths, headSho)
+writedic('standart/spaths', dic_spaths, headSho)
 
 headBetSho = 'gene1,gene2,'+','.join(hcent[10:18])+','+','.join(hshor[2:])+',score\n'
-writedic('bet_sp', dic_bet_spaths, headBetSho)
+writedic('standart/bet_sp', dic_bet_sp, headBetSho)
 
 headComp = 'gene1,gene2,'+','.join(hcent[2:])+','+','.join(hneig[2:])+','+','.join(hshor[2:])+',score\n'
-writedic('complete', dic_complete, headComp)
+writedic('standart/complete', dic_complete, headComp)
+
 
 #Create umbalanced for clustering experiment
 
 clust = [100, 200, 400, 600, 800, 1000]
 for c in clust:
-        for g in range(1,11):
-            for i in range(1, c+1):
-                t = "complete/cluster_algorithm/"+str(c)+"/"+str(g)
-                headComp = 'gene1,gene2,'+','.join(hcent[2:])+','+','.join(hneig[2:])+','+','.join(hshor[2:])+',score\n'
-                writedic(t, dic_complete, headComp)
-
+    for g in range(1,11):
+        for i in range(1, c+1):
+            t = "cluster_algorithm/"+str(c)+"/"+str(g)
+            headComp = 'gene1,gene2,'+','.join(hcent[2:])+','+','.join(hneig[2:])+','+','.join(hshor[2:])+',score\n'
+            writedic(t, dic_complete, headComp)
 
 
 

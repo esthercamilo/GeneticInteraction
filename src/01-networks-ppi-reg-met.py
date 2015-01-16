@@ -8,6 +8,7 @@ import re
 from libsbml import *
 import collections
 import sys
+import os
 
 #from collections import defaultdict
 #import numpy as np
